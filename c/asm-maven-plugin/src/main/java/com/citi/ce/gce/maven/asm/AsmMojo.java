@@ -1,4 +1,4 @@
-package com.github.rmannibucau.maven.asm;
+package com.citi.ce.gce.maven.asm;
 
 import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toMap;
@@ -72,6 +72,7 @@ public class AsmMojo extends BaseMojo {
 
     @Override
     protected void doExecute(final ClassLoader loader) throws IOException {
+        getLog().info("Be nice! Do NOTHING!");
         if (mapping == null) {
             getLog().warn("No mapping, skipping");
             return;

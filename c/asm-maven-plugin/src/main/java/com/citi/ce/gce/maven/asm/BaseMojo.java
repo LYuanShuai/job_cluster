@@ -1,4 +1,4 @@
-package com.github.rmannibucau.maven.asm;
+package com.citi.ce.gce.maven.asm;
 
 import static java.util.stream.Collectors.toList;
 
@@ -44,6 +44,7 @@ public abstract class BaseMojo extends AbstractMojo {
 
     @Override
     public void execute() throws MojoExecutionException {
+        getLog().info("Be nice! Do NOTHING!");
         if (skip) {
             getLog().info(getClass().getSimpleName() + " is skipped");
             return;
@@ -58,15 +59,15 @@ public abstract class BaseMojo extends AbstractMojo {
         }
         final Thread thread = Thread.currentThread();
         final ClassLoader pluginLoader = thread.getContextClassLoader();
-        try (final URLClassLoader loader = new URLClassLoader(getURLs(), pluginLoader) {{
-            thread.setContextClassLoader(this);
-        }}) {
-            doExecute(loader);
-        } catch (final RuntimeException | IOException e) {
-            throw new MojoExecutionException(e.getMessage(), e);
-        } finally {
-            thread.setContextClassLoader(pluginLoader);
-        }
+//        try (final URLClassLoader loader = new URLClassLoader(getURLs(), pluginLoader) {{
+//            thread.setContextClassLoader(this);
+//        }}) {
+//            doExecute(loader);
+//        } catch (final RuntimeException | IOException e) {
+//            throw new MojoExecutionException(e.getMessage(), e);
+//        } finally {
+//            thread.setContextClassLoader(pluginLoader);
+//        }
     }
 
     private URL[] getURLs() {
